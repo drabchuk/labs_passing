@@ -1,15 +1,13 @@
 package db.dao;
 
-import db.dao.oracle.OracleGroupDAO;
+import db.dao.oracle.OracleLabDAO;
+import db.dao.oracle.OracleSyllabusDAO;
 import db.dao.oracle.OracleUserDAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- * Created by Denis on 09.12.2016.
- */
 public final class OracleDAOFactory extends DAOFactory {
     //public static final String DB_URL = "jdbc:oracle:thin:@localhost:1521/study";
     //private static final String USER = "denis";
@@ -27,7 +25,12 @@ public final class OracleDAOFactory extends DAOFactory {
     }
 
     @Override
-    public GroupDAO getGroupDAO() {
-        return new OracleGroupDAO();
+    public LabDAO getLabDAO() {
+        return new OracleLabDAO();
+    }
+
+    @Override
+    public SyllabusDAO getSyllabusDAO() {
+        return new OracleSyllabusDAO();
     }
 }

@@ -26,23 +26,17 @@
             </h:panelGrid>
         </c:if>
         <c:if test="#{user.role == UserRole.values[1]}">
-            <h:outputLink value="menu.xhtml">Menu</h:outputLink>
+            <h:outputLink value="syllabus.xhtml">Syllabus</h:outputLink>
         </c:if>
         <c:if test="#{user.role == UserRole.values[2]}">
             <p>
-            <h:outputLink value="menu.xhtml">Menu</h:outputLink>
+            <h:outputLink value="syllabus.xhtml">Syllabus</h:outputLink>
             </p>
             <p>
-            <h:outputLink value="orders.xhtml">Orders</h:outputLink>
-            </p>
-            <p>
-                <h:outputLink value="top_products.xhtml">Top products</h:outputLink>
+            <h:outputLink value="results.xhtml">Results</h:outputLink>
             </p>
         </c:if>
         <c:if test="#{user.role == UserRole.values[3]}">
-            <p>
-            <h:outputLink value="menu.xhtml">Menu</h:outputLink>
-            </p>
             <p>
             <h:outputLink value="adminka.xhtml">Admin panel</h:outputLink>
             </p>

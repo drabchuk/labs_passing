@@ -14,7 +14,8 @@
             <h:outputLink value="syllabus.xhtml">Syllabus  </h:outputLink>
         </c:if>
         <c:if test="#{user.role == UserRole.getValues()[2]}">
-                <h:outputLink value="groups.xhtml">Groups  </h:outputLink>
+                <h:outputLink value="syllabus.xhtml">Syllabus  </h:outputLink>
+                <h:outputLink value="results.xhtml">Results  </h:outputLink>
 
         </c:if>
         <c:if test="#{user.role == UserRole.getValues()[3]}">

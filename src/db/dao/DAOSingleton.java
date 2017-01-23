@@ -13,9 +13,7 @@ public class DAOSingleton {
     public String USER;
     public String PASS;
     private UserDAO userDAO;
-    private GroupDAO groupDAO;
     private LabDAO labDAO;
-    private SubjectDAO subjectDAO;
     private SyllabusDAO syllabusDAO;
 
 
@@ -25,9 +23,7 @@ public class DAOSingleton {
 
         DAOFactory factory = DAOFactory.getDAOFactory(dbName);
         userDAO = factory.getUserDAO();
-        groupDAO = factory.getGroupDAO();
         labDAO = factory.getLabDAO();
-        subjectDAO = factory.getSubjectDAO();
         syllabusDAO = factory.getSyllabusDAO();
         try {
             String fileName = "db.properties";
@@ -53,16 +49,8 @@ public class DAOSingleton {
         return userDAO;
     }
 
-    public GroupDAO getGroupDAO() {
-        return groupDAO;
-    }
-
     public LabDAO getLabDAO() {
         return labDAO;
-    }
-
-    public SubjectDAO getSubjectDAO() {
-        return subjectDAO;
     }
 
     public SyllabusDAO getSyllabusDAO() {

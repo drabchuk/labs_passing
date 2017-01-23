@@ -5,9 +5,6 @@ import db.dao.DAOSingleton;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-/**
- * Created by Denis on 28.12.2016.
- */
 @ManagedBean(name = "adminDB")
 @SessionScoped
 public class AdminDBBean {

@@ -4,23 +4,26 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
-    <title>Unsuccess</title>
+    <title>Login Page</title>
     <h:outputStylesheet library="css" name="colors.css"></h:outputStylesheet>
     <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
     <h:outputStylesheet href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'
                         library="css" name="style.css"></h:outputStylesheet>
 </h:head>
-
 <h:body class="body-class">
     <f:view>
         <ui:include src="templates/header.xhtml"/>
-        <div class="sheet-of-paper">
-            <p>There is an error in signing up.</p>
-            <h:outputLink value="register.xhtml">Back</h:outputLink>
-        </div>
+        <c:if test="#{user.role == UserRole.values[1]}">
+            <div class="sheet-of-paper">
+                    lab passsed and checking now
+            </div>
+        </c:if>
+        <c:otherwise>
+            <f:viewAction action="#{user.homeRedirect}"/>
+        </c:otherwise>
     </f:view>
 </h:body>
-
 </html>

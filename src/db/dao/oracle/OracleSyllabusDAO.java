@@ -1,41 +1,34 @@
 package db.dao.oracle;
 
 import db.dao.*;
-import db.entities.Group;
-import db.entities.Student;
-import db.entities.Syllabus;
+import db.entities.Lab;
 import db.entities.SyllabusElement;
+import db.entities.User;
+import db.entities.UserRole;
 
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by Denis on 22.01.2017.
- */
 public class OracleSyllabusDAO implements SyllabusDAO{
 
-    SubjectDAO subjectDAO = DAOSingleton.getInstance().getSubjectDAO();
-    UserDAO userDAO = DAOSingleton.getInstance().getUserDAO();
-
     @Override
-    public Syllabus getSyllabusByGroup(Group group) throws SQLException {
-        Syllabus syllabus = new Syllabus(group);
+    public List<SyllabusElement> getSyllabus() throws SQLException {
+        List<SyllabusElement> res = new LinkedList<>();
         ResultSet rs = null;
         try (Connection con = OracleDAOFactory.createConnection()
-             ; PreparedStatement ps =
-                     con.prepareStatement(
-                             "SELECT subject_fk, teacher_fk FROM syllabus WHERE GROUP_FK = ?"
-                     )) {
-            ps.setString(1, group.getChifer());
-            rs = ps.executeQuery();
+             ; Statement statement = con.createStatement()) {
+
+            String query =
+                    "SELECT * FROM LAB";
+            rs = statement.executeQuery(query);
             while (rs.next()) {
-                syllabus.addSubject(
-                        subjectDAO.getSubject(rs.getString("SUBJECT_FK")),
-                        userDAO.selectUserByEmail(rs.getString("TEACHER_FK"))
-                );
+                int id = rs.getInt("ID");
+                String title = rs.getString("TITLE");
+                int maxMark = rs.getInt("MAX_MARK");
+                res.add(new SyllabusElement(id, title, maxMark));
             }
-            return syllabus;
+            return res;
         } catch (SQLException sqle) {
             sqle.printStackTrace();
             throw new SQLException(sqle);

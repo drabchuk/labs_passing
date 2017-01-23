@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+    <title>Login Page</title>
+    <h:outputStylesheet library="css" name="colors.css"></h:outputStylesheet>
+    <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+    <h:outputStylesheet href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'
+                        library="css" name="style.css"></h:outputStylesheet>
+</h:head>
+<h:body class="body-class">
+    <f:view>
+        <ui:include src="templates/header.xhtml"/>
+        <h:form id="labForm">
+                <c:if test="#{user.role == UserRole.values[1]}">
+                    <div class="sheet-of-paper">
+                        <h:form>
+                            <h:dataTable value="#{lab_bean.lab.questions}" var="question"
+                                         styleClass=""
+                                         headerClass=""
+                                         rowClasses="sheet-of-paper">
+                                <h:column>
+                                    <f:facet name="header">Num</f:facet>
+                                    #{question.num}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Question</f:facet>
+                                    #{question.content}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Answer</f:facet>
+                                    <h:inputText value="#{question.userAnswer}" styleClass="input-window"
+                                                 required="false"/>
+                                </h:column>
+                            </h:dataTable>
+                            <h:commandButton value="Send" action="#{lab_bean.check}"
+                                                 styleClass="button-input accent-color"/>
+                        </h:form>
+                    </div>
+                </c:if>
+                <c:otherwise>
+                    <f:viewAction action="#{user.homeRedirect}"/>
+                </c:otherwise>
+        </h:form>
+    </f:view>
+</h:body>
+</html>

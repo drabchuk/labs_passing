@@ -9,10 +9,32 @@ import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by Denis on 16.12.2016.
- */
 public class OracleUserDAO implements UserDAO {
+
+    @Override
+    public List<User> selectStudents() throws SQLException {
+        List<User> users = new LinkedList<>();
+        ResultSet rs = null;
+        try (Connection con = OracleDAOFactory.createConnection()
+             ; Statement statement = con.createStatement()) {
+
+            String query = "SELECT * FROM USR WHERE ROLE = 1";
+            rs = statement.executeQuery(query);
+            while (rs.next()) {
+                User user = new User();
+                user.setEmail(rs.getString("EMAIL"));
+                user.setPass(rs.getString("PASS"));
+                user.setFirstName(rs.getString("FIRST_NAME"));
+                user.setSecondName(rs.getString("SECOND_NAME"));
+                user.setRole(UserRole.values()[rs.getInt("ROLE")]);
+                users.add(user);
+            }
+            return users;
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            throw new SQLException(sqle);
+        }
+    }
 
     @Override
     public int insertUser(User user) throws SQLException{

@@ -1,41 +1,38 @@
 package db.entities;
 
-/**
- * Created by Denis on 22.01.2017.
- */
 public class SyllabusElement {
 
-    private Subject subject;
-    private Group group;
-    private User teacher;
+    private int id;
+    private String title;
+    private int maxMark;
 
-    public SyllabusElement(Subject subject, Group group, User teacher) {
-        this.subject = subject;
-        this.group = group;
-        this.teacher = teacher;
+    public SyllabusElement(int id, String title, int maxMark) {
+        this.id = id;
+        this.title = title;
+        this.maxMark = maxMark;
     }
 
-    public Subject getSubject() {
-        return subject;
+    public int getId() {
+        return id;
     }
 
-    public void setSubject(Subject subject) {
-        this.subject = subject;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public Group getGroup() {
-        return group;
+    public String getTitle() {
+        return title;
     }
 
-    public void setGroup(Group group) {
-        this.group = group;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public User getTeacher() {
-        return teacher;
+    public int getMaxMark() {
+        return maxMark;
     }
 
-    public void setTeacher(User teacher) {
-        this.teacher = teacher;
+    public void setMaxMark(int maxMark) {
+        this.maxMark = maxMark;
     }
 }

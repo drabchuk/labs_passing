@@ -9,9 +9,6 @@ import javax.faces.bean.RequestScoped;
 import java.sql.SQLException;
 import java.util.List;
 
-/**
- * Created by Denis on 25.12.2016.
- */
 @ManagedBean(name = "adminUsers")
 @RequestScoped
 public class AdminUsersBean {

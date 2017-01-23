@@ -6,21 +6,21 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-    <title>Unsuccess</title>
+    <title>Error</title>
     <h:outputStylesheet library="css" name="colors.css"></h:outputStylesheet>
     <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
     <h:outputStylesheet href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'
                         library="css" name="style.css"></h:outputStylesheet>
 </h:head>
-
-<h:body class="body-class">
+<h:body styleClass="body-class">
     <f:view>
         <ui:include src="templates/header.xhtml"/>
         <div class="sheet-of-paper">
-            <p>There is an error in signing up.</p>
-            <h:outputLink value="register.xhtml">Back</h:outputLink>
+            <p>
+                <b>Sorry, repeatable passing is not allowed!</b>
+            </p>
         </div>
+
     </f:view>
 </h:body>
-
 </html>
