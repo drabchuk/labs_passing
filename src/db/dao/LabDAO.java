@@ -1,6 +1,7 @@
 package db.dao;
 
 import db.entities.Lab;
+import db.entities.LabResult;
 import db.entities.StudentResult;
 import db.entities.User;
 
@@ -12,5 +13,6 @@ public interface LabDAO {
     Lab selectLabById(int id) throws SQLException;
     void passLab(User user, Lab lab) throws SQLException;
     List<StudentResult> getStudentResults() throws SQLException;
+    StudentResult getDinary() throws SQLException;
 
 }

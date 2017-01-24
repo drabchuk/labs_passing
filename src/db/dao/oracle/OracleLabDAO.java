@@ -1,10 +1,12 @@
 package db.dao.oracle;
 
+import beans.UserBean;
 import db.dao.DAOSingleton;
 import db.dao.LabDAO;
 import db.dao.OracleDAOFactory;
 import db.entities.*;
 
+import javax.faces.context.FacesContext;
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
@@ -57,6 +59,40 @@ public class OracleLabDAO implements LabDAO {
             sqle.printStackTrace();
             throw new SQLException(sqle);
         }
+    }
+
+    @Override
+    public StudentResult getDinary() throws SQLException {
+
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        UserBean userBean = (UserBean)
+                facesContext.getApplication()
+                        .createValueBinding("#{user}").getValue(facesContext);
+        User student = userBean.getUser();
+        StudentResult studentResult = new StudentResult(student);
+        ResultSet rs = null;
+        try (Connection con = OracleDAOFactory.createConnection()
+             ; PreparedStatement ps =
+                     con.prepareStatement(
+                             "SELECT ID, TITLE, MAX_MARK, MARK FROM PASSED_LAB JOIN LAB ON LAB.ID = PASSED_LAB.LAB_FK WHERE STUDENT_FK = ?"
+                     )) {
+            ps.setString(1, student.getEmail());
+            LabResult labResult;
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("ID");
+                String title = rs.getString("TITLE");
+                int maxMark = rs.getInt("MAX_MARK");
+                int mark = rs.getInt("MARK");
+                Lab lab = new Lab(id, title, maxMark);
+                studentResult.addResult(new LabResult(lab, mark));
+            }
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            throw new SQLException(sqle);
+        }
+
+        return studentResult;
     }
 
     @Override
