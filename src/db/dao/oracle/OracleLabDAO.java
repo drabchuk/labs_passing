@@ -14,6 +14,26 @@ import java.util.List;
 public class OracleLabDAO implements LabDAO {
 
     @Override
+    public void addNewQuestion(int labId, Question question) throws SQLException {
+        try (Connection con = OracleDAOFactory.createConnection()
+             ; PreparedStatement ps =
+                     con.prepareStatement(
+                             "INSERT INTO QUESTION (LAB_FK, QUESTION_NUM, CONTENT, ANSWER) VALUES(?,?,?,?)"
+                     )
+        ) {
+            ps.setString(1, Integer.toString(labId));
+            ps.setString(2, Integer.toString(question.getNum()));
+            ps.setString(3, question.getContent());
+            ps.setString(4, question.getAnswer());
+            ps.executeUpdate();
+            System.out.println("Data Added Successfully");
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            throw new SQLException(sqle);
+        }
+    }
+
+    @Override
     public Lab selectLabById(int id) throws SQLException {
         List<Question> questions = new LinkedList<>();
         ResultSet rs = null;

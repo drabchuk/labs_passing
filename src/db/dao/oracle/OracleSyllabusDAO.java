@@ -10,7 +10,21 @@ import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
-public class OracleSyllabusDAO implements SyllabusDAO{
+public class OracleSyllabusDAO implements SyllabusDAO {
+
+    @Override
+    public void deleteLab(SyllabusElement lab) throws SQLException {
+        try (Connection con = OracleDAOFactory.createConnection()
+             ; Statement statement = con.createStatement()) {
+
+            String query =
+                    "DELETE FROM LABS WHERE ID = " + lab.getId();
+            statement.execute(query);
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+            throw new SQLException(sqle);
+        }
+    }
 
     @Override
     public List<SyllabusElement> getSyllabus() throws SQLException {

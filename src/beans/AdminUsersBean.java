@@ -15,11 +15,16 @@ public class AdminUsersBean {
 
     List<User> users;
     UserDAO userDAO;
+    String userString;
 
     public AdminUsersBean() {
         userDAO = DAOSingleton.getInstance().getUserDAO();
         try {
             this.users = userDAO.selectUsers();
+            userString = "";
+            for (User u: users) {
+                userString += u.getEmail() + ", ";
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -45,5 +50,13 @@ public class AdminUsersBean {
 
     public List<User> getUsers() {
         return users;
+    }
+
+    public String getUserString() {
+        return userString;
+    }
+
+    public void setUserString(String userString) {
+        this.userString = userString;
     }
 }

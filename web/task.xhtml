@@ -17,15 +17,55 @@
     <f:view>
         <ui:include src="templates/header.xhtml"/>
         <div class="sheet-of-paper">
-            <h:dataTable value="#{adminUsers.users}" var="user"
+            <h:outputText value="#{syllabus.labsStr}"></h:outputText>
+
+            <!--h:dataTable value="#{syllabus.labs}" var="lab"
                          styleClass=""
                          headerClass=""
                          rowClasses="sheet-of-paper">
                 <h:column>
                     <f:facet name="header"></f:facet>
-                    #{user.secondName}
+                    #{lab.title}
+                </h:column>
+            </h:dataTable-->
+            <h:dataTable value="#{adminUsers.users}" var="pidor"
+                         styleClass=""
+                         headerClass=""
+                         rowClasses="sheet-of-paper">
+                <h:column>
+                    <f:facet name="header"></f:facet>
+                    #{pidor.email}
                 </h:column>
             </h:dataTable>
+
+            <h:dataTable value="#{syllabus.labs}" var="lab"
+                         styleClass=""
+                         headerClass=""
+                         rowClasses="sheet-of-paper">
+                <h:column>
+                    <f:facet name="header"></f:facet>
+                    #{lab.title}
+                </h:column>
+            </h:dataTable>
+
+            <h:dataTable value="#{students_results.results}" var="res"
+                         styleClass=""
+                         headerClass=""
+                         rowClasses="sheet-of-paper">
+                <h:column>
+                    <f:facet name="header"></f:facet>
+                    <h:dataTable value="#{res.results}" var="std_res"
+                                 styleClass=""
+                                 headerClass=""
+                                 rowClasses="sheet-of-paper">
+                        <h:column>
+                            <f:facet name="header"></f:facet>
+                            #{std_res.lab}
+                        </h:column>
+                    </h:dataTable>
+                </h:column>
+            </h:dataTable>
+
         </div>
     </f:view>
 </h:body>

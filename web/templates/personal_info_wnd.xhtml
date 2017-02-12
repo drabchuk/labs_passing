@@ -12,6 +12,8 @@
             <h:link value="login" outcome="login"/>
             <h:outputText value="   "/>
             <h:link value="sign up" outcome="register"/>
+            <h:outputText value="   "/>
+            <h:link value="task" outcome="task.xhtml"/>
         </c:if>
         <c:if test="#{user.role == UserRole.getValues()[1]}">
             <h:outputText value="authorized as student: "/>

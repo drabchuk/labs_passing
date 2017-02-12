@@ -1,9 +1,6 @@
 package db.dao;
 
-import db.entities.Lab;
-import db.entities.LabResult;
-import db.entities.StudentResult;
-import db.entities.User;
+import db.entities.*;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -14,5 +11,6 @@ public interface LabDAO {
     void passLab(User user, Lab lab) throws SQLException;
     List<StudentResult> getStudentResults() throws SQLException;
     StudentResult getDinary() throws SQLException;
+    void addNewQuestion(int labId, Question question) throws SQLException;
 
 }

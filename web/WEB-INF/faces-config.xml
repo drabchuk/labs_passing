@@ -37,6 +37,16 @@
     </navigation-rule>
 
     <navigation-rule>
+        <description>manage lab</description>
+        <from-view-id>/lab_manager.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{syllabus.editLab}</from-action>
+            <from-outcome>edit</from-outcome>
+            <to-view-id>/lab_content_manager.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
         <description>complete lab</description>
         <from-view-id>/lab.xhtml</from-view-id>
         <navigation-case>

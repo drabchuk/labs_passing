@@ -32,7 +32,7 @@
                         <f:facet name="header"></f:facet>
                         #{lab.maxMark}
                     </h:column>
-                    <h:column>
+                    <h:column rendered="#{user.role == UserRole.values[1]}">
                         <h:form>
                         <h:commandButton styleClass="button-input" value="pass"
                                          action="#{syllabus.selectLab}">

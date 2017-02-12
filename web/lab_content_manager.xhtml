@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+    <title>Admin</title>
+    <h:outputStylesheet library="css" name="colors.css"></h:outputStylesheet>
+    <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+    <h:outputStylesheet href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'
+                        library="css" name="style.css"></h:outputStylesheet>
+</h:head>
+
+<h:body class="body-class">
+    <f:view>
+        <c:if test="#{user.role == UserRole.values[2]}">
+            <ui:include src="templates/header.xhtml"/>
+            <div class="sheet-of-paper">
+
+                    <h:dataTable value="#{lab_bean.lab.questions}" var="question"
+                                 rowClasses="sheet-of-paper">
+                        <h:column>
+                            <f:facet name="header">Number</f:facet>
+                            #{question.num}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Question content</f:facet>
+                            #{question.content}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Answer</f:facet>
+                            #{question.answer}
+                        </h:column>
+                    </h:dataTable>
+                <h:form>
+                    <table frame="void">
+                        <tr>
+                            <td><h:inputText id="inputId" value="#{question_bean.id}" styleClass="input-window"
+                                               required="true"
+                                               requiredMessage="must not be empty"/>
+                            </td>
+                            <td><h:inputText id="inputContent" value="#{question_bean.content}" styleClass="input-window"
+                                             required="true"
+                                             requiredMessage="must not be empty"/>
+                            </td>
+                            <td><h:inputText id="inputAnswer" value="#{question_bean.answer}" styleClass="input-window"
+                                             required="true"
+                                             requiredMessage="must not be empty"/>
+                            </td>
+                            <td><h:commandButton  value="add" action="#{question_bean.save(lab_bean.lab)}"
+                                                 styleClass="button-input accent-color"/></td>
+                        </tr>
+                    </table>
+                </h:form>
+            </div>
+        </c:if>
+        <c:otherwise>
+            <f:viewAction action="#{user.homeRedirect}"/>
+        </c:otherwise>
+    </f:view>
+</h:body>
+
+</html>
+

@@ -17,12 +17,12 @@
         <c:if test="#{user.role == UserRole.getValues()[2]}">
                 <h:outputLink value="syllabus.xhtml">Syllabus  </h:outputLink>
                 <h:outputLink value="results.xhtml">Results  </h:outputLink>
+                <h:outputLink value="lab_manager.xhtml">LabsManager  </h:outputLink>
 
         </c:if>
         <c:if test="#{user.role == UserRole.getValues()[3]}">
                 <h:outputLink value="adminka.xhtml">Admin panel </h:outputLink>
-                <h:outputLink value="task.xhtml" style="visibility: hidden">Task</h:outputLink>
-                <h:outputLink value="task.xhtml">Task</h:outputLink>
+                <!--h:outputLink value="task.xhtml">Task</h:outputLink-->
         </c:if>
     </div>
 </f:view>

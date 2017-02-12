@@ -9,5 +9,6 @@ import java.util.List;
 public interface SyllabusDAO {
 
     List<SyllabusElement> getSyllabus() throws SQLException;
+    void deleteLab(SyllabusElement lab) throws SQLException;
 
 }
